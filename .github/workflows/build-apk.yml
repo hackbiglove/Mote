@@ -21,9 +21,9 @@ jobs:
           java-version: '17'
 
       - name: Setup Android SDK
-        uses: android-actions/setup-android@v3
+        uses: android-actions/setup-android@v4
 
-      - name: Install Android SDK
+      - name: Install Android SDK packages
         run: |
           yes | sdkmanager --licenses || true
           sdkmanager "platforms;android-36.1" "build-tools;36.1.0" "platform-tools"
@@ -31,7 +31,7 @@ jobs:
       - name: Make Gradle executable
         run: chmod +x gradlew
 
-      - name: Build APK
+      - name: Build Mote APK
         run: ./gradlew assembleDebug --no-daemon
 
       - name: Upload APK
